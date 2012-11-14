@@ -36,10 +36,12 @@
 
 		$('#save').click(function() {
 			$('#code').text(CodeEditor.getCode());
+			return false;
 		});
 
 		$('#toggle_textarea').click(function() {
 			$('#code').toggleClass('hidden');
+			return false;
 		});
 	});
 
