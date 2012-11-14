@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>ACE in Action</title>
+	<style type="text/css" media="screen">
+		#editor_wrapper{
+			position:relative;
+			height: 400px;
+		}
+		#editor { 
+			position: absolute;
+			left:0;
+			top:0;
+			width:80%;
+			height: 100%;
+		}
+		#save{
+			font-size:20px;
+			margin:20px 0;
+		}
+
+		.hidden{
+			display:none;
+		}
+	</style>
+
+	<script src="http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+	<script>
+	$(document).ready(function() {
+		$.get('js/jquery.cookie.js', function(data) {
+			$('#editor').text(data);
+			CodeEditor.init('editor');
+		});
+
+		$('#save').click(function() {
+			$('#code').text(CodeEditor.getCode());
+		});
+
+		$('#toggle_textarea').click(function() {
+			$('#code').toggleClass('hidden');
+		});
+	});
+
+	var CodeEditor = function() {
+		var _editor;
+
+		var _init = function(element) {
+			_editor = ace.edit("editor");
+			_editor.setTheme("ace/theme/dawn");
+			_editor.getSession().setMode("ace/mode/javascript");
+		};
+
+		var _getCode = function() {
+			return _editor.getValue();
+			console.log(code);
+		};
+
+		return {
+			init: _init,
+			getCode: _getCode
+		}
+	}();
+
+	</script>
+</head>
+<body>
+	<h1>ACE Editor Demo</h1>
+	<div id="editor_wrapper">
+		<div id="editor"></div>
+	</div>
+	<textarea name="code" id="code" class="hidden"></textarea>
+	<button type="submit" id="save">Save</button>
+	<p>
+		<a href="#" title="Show/Hide Textarea" id="toggle_textarea">Show/Hide Textarea</a>
+	</p>
+</body>
+</html>
