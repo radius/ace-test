@@ -32,10 +32,16 @@
 	$(document).ready(function() {
 		$.get('code/example.txt', function(data) {
 			console.log(data);
+			CodeEditor.init('editor');
+
+			// you can override the defaults by passing in a config object, like so:
+			/*
 			CodeEditor.init('editor', {
 				theme: 'cobalt',
 				language: 'css'
 			});
+			*/
+
 			CodeEditor.setCode(data);
 		});
 
