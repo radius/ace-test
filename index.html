@@ -30,8 +30,12 @@
 
 	<script>
 	$(document).ready(function() {
-		$.get('code/example.js', function(data) {
-			CodeEditor.init('editor');
+		$.get('code/example.txt', function(data) {
+			console.log(data);
+			CodeEditor.init('editor', {
+				theme: 'cobalt',
+				language: 'css'
+			});
 			CodeEditor.setCode(data);
 		});
 
